@@ -8,6 +8,8 @@ const port = 8006;
 
 // Move the app.use(cors()); statement here
 app.use(cors());
+app.use(express.json()); // Add this line to parse JSON in the request body
+
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -36,6 +38,18 @@ app.get('/api/emails', async (req, res) => {
     res.json(emails);
   } catch (error) {
     console.error('Error loading emails:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// New route to get the count of emails
+app.get('/api/emails/count', async (req, res) => {
+  console.log('Received GET request for /api/emails/count');
+  try {
+    const emailCount = await Email.countDocuments();
+    res.json({ count: emailCount });
+  } catch (error) {
+    console.error('Error getting email count:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

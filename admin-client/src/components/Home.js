@@ -1,27 +1,21 @@
-import React, {useState, useEffect} from 'react'
-import 
-{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill}
- from 'react-icons/bs'
- import 
- { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
- from 'recharts';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import axios from 'axios';
-import Products from './Products';
-
+import "./Admin.css";
+import { setEmailCount } from './actions/action';
 
 function Home() {
-    const [emailCount, setEmailCount] = useState(0);
-
-  const updateEmailCount = (count) => {
-    setEmailCount(count);
-  };
+  const emailCount = useSelector((state) => state.emailCount);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
       .get('/api/emails/count')
-      .then((response) => setEmailCount(response.data.count))
+      .then((response) => dispatch(setEmailCount(response.data.count)))
       .catch((error) => console.error('Error fetching email count:', error));
-  }, []);
+  }, [dispatch]);
     const data = [
         {
           name: 'Page A',
@@ -70,9 +64,9 @@ function Home() {
 
   return (
     <main className='main-container'>
-        <div className='main-title'>
+        {/* <div className='main-title'>
             <h3>DASHBOARD</h3>
-        </div>
+        </div> */}
 
         <div className='main-cards'>
             <div className='card'>
@@ -80,7 +74,7 @@ function Home() {
                     <h3>PRODUCTS</h3>
                     <BsFillArchiveFill className='card_icon'/>
                 </div>
-                <h1>{emailCount}</h1>
+                <h1>0</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
@@ -94,14 +88,14 @@ function Home() {
                     <h3>CUSTOMERS</h3>
                     <BsPeopleFill className='card_icon'/>
                 </div>
-                <h1>33</h1>
+                <h1>{emailCount}</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>ALERTS</h3>
-                    <BsFillBellFill className='card_icon'/>
+                    <h4>ALERTS</h4>
+                    <BsFillBellFill className='card_icon4'/>
                 </div>
-                <h1>42</h1>
+                <h2>42</h2>
             </div>
         </div>
 
