@@ -1,9 +1,13 @@
 require("dotenv").config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
 const port = 8006;
+
+// Move the app.use(cors()); statement here
+app.use(cors());
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -16,7 +20,6 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
   console.error("Error connecting to MongoDB:", error);
 });
 
-
 const emailSchema = new mongoose.Schema({
   email: String,
   name: String,
@@ -26,7 +29,8 @@ const emailSchema = new mongoose.Schema({
 
 const Email = mongoose.model('Email', emailSchema);
 
-app.get('/emails', async (req, res) => {
+app.get('/api/emails', async (req, res) => {
+  console.log('Received GET request for /api/emails');
   try {
     const emails = await Email.find();
     res.json(emails);
@@ -53,7 +57,6 @@ app.delete('/api/emails/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 app.listen(port, () => {
   console.log(`Admin portal started on port ${port}`);

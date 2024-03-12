@@ -10,7 +10,7 @@ const Products = ({ updateEmailCount }) => {
   useEffect(() => {
     // Fetch emails from the Express server
     axios
-      .get('/api/emails')
+      .get('/emails')
       .then((response) => dispatch(setEmails(response.data)))
       .catch((error) => console.error('Error fetching emails:', error));
   }, [dispatch]);
