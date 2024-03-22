@@ -4,8 +4,7 @@ import './Admin.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
-import Products from './Products'; // Import your AdminPortal component
-import Signin from "../components/Auth/Signin"
+import Products from './Products';
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -16,9 +15,6 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/signin" element={<Signin />} />
-        </Routes>
       <div className='grid-container'>
         <Header OpenSidebar={OpenSidebar}/>
         <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
