@@ -140,6 +140,15 @@ body {
     gap: 20px;
     margin: 15px 0;
   }
+
+  .card a{
+    text-decoration: none;
+  }
+
+  .form-control:focus{
+    border-color: none !important;
+    box-shadow:none !important;
+  }
   
   .card {
     display: flex;
