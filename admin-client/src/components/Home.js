@@ -28,10 +28,9 @@ function Home() {
   const [pieChartData, setPieChartData] = useState([]);
 
   useEffect(() => {
-    // Fetch email count
-    axios
-      .get('/api/emails/count')
-      .then((response) => {
+    const fetchEmailCount = async () => {
+      try {
+        const response = await axios.get('/api/emails/count');
         console.log('Email Count Response:', response.data); // Debugging log
         const currentEmailCount = response.data.count;
         const lastViewedEmailCount = parseInt(localStorage.getItem('lastViewedEmailCount'), 10) || 0;
@@ -44,9 +43,18 @@ function Home() {
         }
 
         dispatch(setEmailCount(currentEmailCount));
-      })
-      .catch((error) => console.error('Error fetching email count:', error));
-    
+      } catch (error) {
+        console.error('Error fetching email count:', error);
+      }
+    };
+
+    fetchEmailCount(); // Initial fetch
+    const interval = setInterval(fetchEmailCount, 5000); // Fetch email count every 5 seconds
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, [dispatch]);
+
+  useEffect(() => {
     // Mock data for monthly data
     const mockMonthlyData = [
       { name: 'Jan', open: 20, high: 40, low: 10, close: 30 },
@@ -59,7 +67,7 @@ function Home() {
       { name: 'Alerts', value: newEmailCount },
       { name: 'Customers', value: emailCount },
     ]);
-  }, [dispatch, emailCount, newEmailCount]);
+  }, [emailCount, newEmailCount]);
 
   const COLORS = ['#0088FE', '#FF8042'];
 
@@ -81,7 +89,7 @@ function Home() {
           <h1>0</h1>
         </div>
         <div className='card'>
-          <Link to="/products">
+          <Link to="/customers">
             <div className='card-inner'>
               <h3>CUSTOMERS</h3>
               <BsPeopleFill className='card_icon' />

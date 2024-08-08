@@ -4,6 +4,7 @@ const express = require("express");
 const router = new express.Router();
 const nodemailer = require("nodemailer");
 const Email = require("../models/Email");
+const User = require('../models/User');
 
 // send mail to admin portal
 router.post("/register", async (req, res) => {

@@ -1,0 +1,480 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+  }
+  
+  /* Container Styles */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Form Styles */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 20px;
+    flex-direction: row;
+  }
+  
+  .login-left {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+  
+  .login-left h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    color: #6b7280;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: #ef4444;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+  }
+  
+  .remember-me input {
+    margin-right: 5px;
+  }
+  
+  .forgot-password {
+    font-size: 14px;
+    color: #1f2937;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border: 1px solid #d1d5db;
+  }
+  
+  .submit-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #d1d5db;
+  }
+  
+  .google-button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+  }
+  
+  .google-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  .google-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  
+  .signup-link {
+    text-align: center;
+    color: #6b7280;
+  }
+  
+  .signup-link-text {
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  /* Right Side Styles */
+  .login-right {
+    position: relative;
+    display: none;
+  }
+  
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    /* border-radius: 8px; */
+    backdrop-filter: blur(8px);
+  }
+  
+  .overlay-text span {
+    font-size: 18px;
+    color: #ffffff;
+  }
+
+
+  .access-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .access-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Flexbox Layout for Forms */
+  .access-forms {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left-form, .right-form {
+    width: 48%;
+  }
+  
+  .left-form h3, .right-form h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .access-forms form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .access-forms input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .access-forms button {
+    padding: 10px;
+    background-color: #232323;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .access-forms button:hover {
+    background-color: #232323;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  /* Container Styles */
+.user-management {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .user-management h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Flexbox Layout for User Lists */
+  .user-lists {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user-list {
+    width: 48%;
+  }
+  
+  .user-list h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .user-list ul {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f9fafb;
+  }
+  
+  .user-list ul li {
+    padding: 10px;
+    border-bottom: 1px solid #d1d5db;
+  }
+  
+  .user-list ul li:last-child {
+    border-bottom: none;
+  }
+  /* Add styles for success and error messages */
+.success-message {
+    color: green;
+    font-size: 1rem;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 1rem;
+  }
+  
+  /* Style for "Back to Login" link */
+  .back-to-login {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+  }
+  .products-main-container-1 {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .user-management {
+    width: 100%;
+    max-width: 800px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-management h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-lists {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user-list {
+    width: 48%;
+  }
+  
+  .user-list h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .user-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-item span {
+    flex-grow: 1;
+  }
+  
+  .delete-btn {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .delete-btn:hover {
+    background-color: #ff7875;
+  }
+    
+  .products-main-container-1 {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .access-container, .user-management {
+    width: 100%;
+    max-width: 800px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .access-container h2, .user-management h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .access-forms, .user-lists {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left-form, .right-form, .user-list {
+    width: 48%;
+  }
+  
+  .left-form h3, .right-form h3, .user-list h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .left-form form, .right-form form, .user-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-item, .left-form input, .right-form input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-item span, .left-form input, .right-form input {
+    flex-grow: 1;
+  }
+  
+  .access-btn, .delete-btn, .create-user-btn {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .access-btn:hover, .delete-btn:hover, .create-user-btn:hover {
+    background-color: #ff7875;
+  }
+  
+  .message.success {
+    color: green;
+  }
+  
+  .message.error {
+    color: red;
+  }
+  
+  @media (min-width: 768px) {
+    .login-form {
+      flex-direction: row;
+    }
+  
+    .login-left {
+      padding: 2rem;
+    }
+  
+    .login-right {
+      display: block;
+      flex: 1;
+    }
+  }
+  

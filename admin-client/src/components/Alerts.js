@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, Button, Form } from 'react-bootstrap';
+import { Table, Button, Form, Badge } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Alerts = () => {
+const Alerts = ({ onEmailsUpdate }) => {
   const [emails, setEmails] = useState([]);
   const [newEmails, setNewEmails] = useState([]);
   const [selectedEmails, setSelectedEmails] = useState([]);
@@ -11,21 +11,30 @@ const Alerts = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get('/api/emails')
-      .then((response) => {
+    // Function to fetch emails
+    const fetchEmails = async () => {
+      try {
+        const response = await axios.get('/api/emails');
         const allEmails = Array.isArray(response.data) ? response.data : [];
         setEmails(allEmails);
 
         const lastViewedEmailCount = parseInt(localStorage.getItem('lastViewedEmailCount'), 10) || 0;
         const newEmailsList = allEmails.slice(lastViewedEmailCount);
         setNewEmails(newEmailsList);
-      })
-      .catch((error) => {
+
+        if (onEmailsUpdate) onEmailsUpdate(newEmailsList.length);
+
+      } catch (error) {
         console.error('Error fetching emails:', error);
         setError('Error fetching emails. Please try again later.');
-      });
-  }, []);
+      }
+    };
+
+    fetchEmails(); // Initial fetch
+    const interval = setInterval(fetchEmails, 5000); // Fetch emails every 5 seconds
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, [onEmailsUpdate]);
 
   const handleViewEmails = () => {
     localStorage.setItem('lastViewedEmailCount', emails.length.toString());
@@ -59,6 +68,8 @@ const Alerts = () => {
     const lastViewedEmailCount = parseInt(localStorage.getItem('lastViewedEmailCount'), 10) || 0;
     const newLastViewedEmailCount = lastViewedEmailCount + selectedEmails.length;
     localStorage.setItem('lastViewedEmailCount', newLastViewedEmailCount.toString());
+
+    if (onEmailsUpdate) onEmailsUpdate(remainingEmails.length);
   };
 
   return (
@@ -68,8 +79,8 @@ const Alerts = () => {
         <Button
           onClick={handleViewEmails}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 mr-2"
-          style={{margin:"1rem"}}
-       >
+          style={{ margin: "1rem 1rem 1rem 0" }}
+        >
           Mark all as viewed
         </Button>
         {selectedEmails.length > 0 && (
@@ -80,6 +91,9 @@ const Alerts = () => {
             Mark selected as viewed
           </Button>
         )}
+        <div className="ml-auto">
+          <Badge bg="danger">{newEmails.length}</Badge>
+        </div>
       </div>
       {error && <p>{error}</p>}
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-3">
@@ -113,11 +127,11 @@ const Alerts = () => {
                           onChange={() => handleCheckboxChange(email._id)}
                         />
                       </td>
-                      <td>{email._id}</td>
-                      <td>{email.name}</td>
-                      <td>{email.email}</td>
-                      <td>{email.mobile}</td>
-                      <td>{email.subject ? email.subject : 'No Subject'}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{email._id}</td>
+                      <td className="whitespace-nowrap px-6 py-4">{email.name}</td>
+                      <td className="whitespace-nowrap px-6 py-4">{email.email}</td>
+                      <td className="whitespace-nowrap px-6 py-4">{email.mobile}</td>
+                      <td className="whitespace-nowrap px-6 py-4">{email.subject ? email.subject : 'No Subject'}</td>
                     </tr>
                   ))
                 ) : (

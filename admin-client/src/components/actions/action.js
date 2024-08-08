@@ -1,4 +1,4 @@
-import { SET_EMAILS ,SET_EMAIL_COUNT, UPDATE_EMAIL_COUNT} from '../../components/types/type';
+import { SET_EMAILS ,SET_EMAIL_COUNT, UPDATE_EMAIL_COUNT, SET_NEW_EMAILS} from '../../components/types/type';
 
 export const setEmails = (emails) => ({
     type: SET_EMAILS,
@@ -10,10 +10,13 @@ export const setEmails = (emails) => ({
     payload: count,
   });
 
-  // actions/action.js
-// export const updateEmailCount = (count) => ({
-//   type: UPDATE_EMAIL_COUNT,
-//   payload: count,
-// });
+// actions/action.js
+
+
+export const setNewEmails = (newEmails) => ({
+  type: SET_NEW_EMAILS,
+  payload: newEmails,
+});
+
 
   
